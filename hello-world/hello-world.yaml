@@ -1,0 +1,23 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: hello-world-app
+  labels:
+    app: hello-world
+spec:
+  containers:
+    - name: hello-world-app
+      image: quay.io/powercloud/http-echo
+      args:
+        - "-text=hello-world"
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-world-service
+spec:
+  selector:
+    app: hello-world
+  ports:
+    - port: 5678
